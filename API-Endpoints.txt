@@ -1,9 +1,12 @@
-GET /users – Get all users
+GET /users – List all users
 
-GET /users/:id – Get a specific user
+GET /users/:id – Get a user by ID
 
-POST /users – Create a user
+POST /users – Create a new user
 
-PUT /users/:id – Update a user
+PUT /users/:id – Update an existing user
 
 DELETE /users/:id – Delete a user
+
+Test With
+Use tools like Postman or Thunder Client in VS Code.
