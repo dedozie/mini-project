@@ -1,13 +1,16 @@
 # Mini Project – Express.js + PostgreSQL CRUD API
 
+## Overview
+This project is a simple RESTful API built with Express.js and PostgreSQL to demonstrate basic CRUD operations on a 'users' table.
+
 ## Prerequisites
 - Node.js
 - PostgreSQL
 
-## Setup
+## Setup Instructions
 
-1. Create a database in PostgreSQL
-2. Create a `users` table:
+1. Create a PostgreSQL database.
+2. Create the users table with:
 
 ```sql
 CREATE TABLE users (
