@@ -12,18 +12,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get user by ID
+// Get one user
 router.get('/:id', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users WHERE id = $1', [req.params.id]);
-    if (result.rows.length === 0) return res.status(404).json({ message: 'User not found' });
+    if (result.rows.length === 0) return res.status(404).json({ error: 'User not found' });
     res.json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Create a new user
+// Create user
 router.post('/', async (req, res) => {
   const { name, email, age } = req.body;
   try {
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update a user
+// Update user
 router.put('/:id', async (req, res) => {
   const { name, email, age } = req.body;
   try {
@@ -45,18 +45,18 @@ router.put('/:id', async (req, res) => {
       'UPDATE users SET name = $1, email = $2, age = $3 WHERE id = $4 RETURNING *',
       [name, email, age, req.params.id]
     );
-    if (result.rows.length === 0) return res.status(404).json({ message: 'User not found' });
+    if (result.rows.length === 0) return res.status(404).json({ error: 'User not found' });
     res.json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Delete a user
+// Delete user
 router.delete('/:id', async (req, res) => {
   try {
     const result = await pool.query('DELETE FROM users WHERE id = $1 RETURNING *', [req.params.id]);
-    if (result.rows.length === 0) return res.status(404).json({ message: 'User not found' });
+    if (result.rows.length === 0) return res.status(404).json({ error: 'User not found' });
     res.json({ message: 'User deleted successfully' });
   } catch (err) {
     res.status(500).json({ error: err.message });
